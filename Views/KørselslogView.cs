@@ -34,6 +34,8 @@ namespace Tur_Retur_Kørselslog
 
             _repo.SQLOpretBruger(bruger);
 
+            
+
         }
     }
 }
