@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tur_Retur_Kørselslog
+namespace Tur_Retur_Kørselslog.Klasse_Objekter
 {
-    internal class BrugerOpret : Bruger
+    internal class OpretBruger 
     {
-        public DateTime OpretDato { get; set; }
+        public List<Bruger> BrugerList { get; set; }
+
     }
 }

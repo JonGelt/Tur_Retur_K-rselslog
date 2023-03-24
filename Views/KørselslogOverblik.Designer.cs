@@ -157,6 +157,7 @@
             this.Opret_Stamdata_Opret.TabIndex = 6;
             this.Opret_Stamdata_Opret.Text = "Opret";
             this.Opret_Stamdata_Opret.UseVisualStyleBackColor = true;
+            this.Opret_Stamdata_Opret.Click += new System.EventHandler(this.Opret_Stamdata_Opret_Click);
             // 
             // Opret_Stamdata_Nummerplade
             // 
@@ -179,8 +180,6 @@
             this.Opret_Stamdata_Navn_textbox.Name = "Opret_Stamdata_Navn_textbox";
             this.Opret_Stamdata_Navn_textbox.Size = new System.Drawing.Size(100, 20);
             this.Opret_Stamdata_Navn_textbox.TabIndex = 1;
-            this.Opret_Stamdata_Navn_textbox.Click += new System.EventHandler(this.Opret_Stamdata_Navn_PlaceholderText);
-            this.Opret_Stamdata_Navn_textbox.Leave += new System.EventHandler(this.Opret_Stamdata_Navn_PlaceholderText);
             // 
             // Opret_Stamdata_OpretBrugerLabel
             // 
@@ -727,6 +726,7 @@
             this.MinimizeBox = false;
             this.Name = "KørselslogView";
             this.Text = "Tur&Retur Kørselslog";
+            this.Load += new System.EventHandler(this.KørselslogView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Personale_Gridview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Kørselslog_Gridview)).EndInit();
             this.Opret_Stamdata_Panel.ResumeLayout(false);

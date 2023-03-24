@@ -1,70 +1,44 @@
-﻿using NuGet.Protocol.Plugins;
-using System;
-using System.Windows.Forms;
-using Tur_Retur_Kørselslog.PladsholderTekst;
+﻿using System.Windows.Forms;
+using Tur_Retur_Kørselslog.Repos;
 
 namespace Tur_Retur_Kørselslog
 {
     public partial class KørselslogView : Form
-    {        
-        SQLRepository _repo = null;        
-        PladsholderLogik _pgl = null;
+    {
+        SQLRepository _repo = null;
+        PlaceholderLogic _pgl = null;
 
         public KørselslogView()
         {
             InitializeComponent();
 
             _repo = new SQLRepository();
-            _pgl = new PladsholderLogik();
-
-            //C# - anonymous functions and event handlers
-            SetEventForAllTextBox();
+            _pgl = new PlaceholderLogic();
 
         }
 
-        private void SetEventForAllTextBox()
+        private void KørselslogView_Load(object sender, System.EventArgs e)
         {
-            //C# - anonymous functions and event handlers
-            this.Opret_Stamdata_Navn_textbox.Leave += (sender, e) =>
-            {
-                var result = _pgl.TilføjPladsholder(Opret_Stamdata_Navn_textbox.Text);
-                Opret_Stamdata_Navn_textbox.Text = result;
-            }; //new EventHandler()
-
-            //C# - anonymous functions and event handlers
-            this.Opret_Stamdata_Navn_textbox.Enter += (sender, e) => { Opret_Stamdata_Navn_textbox.Text = _pgl.FjernPladsholder(Opret_Stamdata_Navn_textbox.Text); }; //new EventHandler()
-
-            
+            _pgl.StringAssigner(Opret_Stamdata_Navn_textbox, Opret_Stamdata_Nummerplade, Rediger_Stamdata_Nummerplade, Opret_Kørselslog_Nummerplade, Opret_Kørselslog_Opgave);
         }
 
-        private void Opret_Stamdata_Navn_PlaceholderText(object sender, System.EventArgs e)
+        private void Opret_Stamdata_Opret_Click(object sender, System.EventArgs e)
         {
-            var result = _pgl.FjernPladsholder(Opret_Stamdata_Navn_textbox.Text);
-            Opret_Stamdata_Navn_textbox.Text = result;
+            Bruger bruger = new Bruger();
+
+            bruger.Id = GetNewId();
+            bruger.Navn = Opret_Stamdata_Navn_textbox.Text;
+            bruger.Dato = Opret_Stamdato_Dato_dateTimePicker.Value;
+            bruger.Nrplade = Opret_Stamdata_Nummerplade.Text;
 
 
-           
+            _repo.SQLOpretBruger(bruger);
 
         }
-
-        
-        
     }
 }
 
 
-//private void Opret_Stamdata_Opret_Click(object sender, System.EventArgs e)
-//{
-//    BrugerOpret nyBruger = new BrugerOpret
-//    {
-//        Navn = Opret_Stamdata_Navn_textbox.Text,
-//        OpretDato = Opret_Stamdato_Dato_dateTimePicker.Value,
-//        Nrplade = Opret_Stamdata_Nummerplade.Text
-//    };
 
-//    int newId = _repo.OpretBruger(nyBruger);
-
-//    nyBruger.Id = newId;
-//}
 
 
