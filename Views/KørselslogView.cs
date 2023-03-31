@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.IO;
+using System.Windows.Forms;
 using Tur_Retur_Kørselslog.Repos;
 
 namespace Tur_Retur_Kørselslog
@@ -7,14 +9,21 @@ namespace Tur_Retur_Kørselslog
     {
         SQLRepository _repo = null;
         PlaceholderLogic _pgl = null;
+        public static string FileFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "C:/Users/JD/Desktop/Kørselslog Test Data";
+        public static string FileName = FileFolder + "/AppData.txt";
+      
 
         public KørselslogView()
         {
+
+
             InitializeComponent();
+             
 
             _repo = new SQLRepository();
             _pgl = new PlaceholderLogic();
 
+            
         }
 
         private void KørselslogView_Load(object sender, System.EventArgs e)
@@ -24,17 +33,21 @@ namespace Tur_Retur_Kørselslog
 
         private void Opret_Stamdata_Opret_Click(object sender, System.EventArgs e)
         {
-            Bruger bruger = new Bruger();
-
-            bruger.Id = GetNewId();
-            bruger.Navn = Opret_Stamdata_Navn_textbox.Text;
-            bruger.Dato = Opret_Stamdato_Dato_dateTimePicker.Value;
-            bruger.Nrplade = Opret_Stamdata_Nummerplade.Text;
 
 
-            _repo.SQLOpretBruger(bruger);
-
+            if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "C:/Users/JD/Desktop/Kørselslog Test Data/AppData.txt"))
+            {
+                File.WriteAllText(FileName, _repo.SQLOpretBruger(Opret_Stamdata_Navn_textbox, Opret_Stamdato_Dato_dateTimePicker, Opret_Stamdata_Nummerplade);
+                //_repo.SQLOpretBruger(Opret_Stamdata_Navn_textbox.Text, Opret_Stamdato_Dato_dateTimePicker, Opret_Stamdata_Nummerplade.Text);
+            }
+           
             
+
+        }
+
+        private void Personale_Gridview_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Opret_Stamdata_Navn_textbox.Text = Personale_Gridview.SelectedRows[0].Cells[0].Value.ToString();
 
         }
     }

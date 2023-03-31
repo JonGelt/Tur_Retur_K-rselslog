@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Personale_Gridview = new System.Windows.Forms.DataGridView();
+            this.components = new System.ComponentModel.Container();
             this.Kørselslog_Gridview = new System.Windows.Forms.DataGridView();
             this.Opret_Stamdata_Panel = new System.Windows.Forms.Panel();
             this.Opret_Stamdato_Dato_dateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -86,7 +86,8 @@
             this.Hjælp_Personale_Panel = new System.Windows.Forms.Panel();
             this.label27 = new System.Windows.Forms.Label();
             this.Hjælp_Panel = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.Personale_Gridview)).BeginInit();
+            this.sQLRepositoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Personale_Gridview = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.Kørselslog_Gridview)).BeginInit();
             this.Opret_Stamdata_Panel.SuspendLayout();
             this.Rediger_Stamdata_Panel.SuspendLayout();
@@ -96,15 +97,9 @@
             this.Opret_Kørselslog_Panel.SuspendLayout();
             this.Hjælp_Kørselslog_Panel.SuspendLayout();
             this.Hjælp_Personale_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sQLRepositoryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Personale_Gridview)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Personale_Gridview
-            // 
-            this.Personale_Gridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Personale_Gridview.Location = new System.Drawing.Point(0, 207);
-            this.Personale_Gridview.Name = "Personale_Gridview";
-            this.Personale_Gridview.Size = new System.Drawing.Size(373, 207);
-            this.Personale_Gridview.TabIndex = 0;
             // 
             // Kørselslog_Gridview
             // 
@@ -697,6 +692,23 @@
             this.Hjælp_Panel.Size = new System.Drawing.Size(269, 179);
             this.Hjælp_Panel.TabIndex = 22;
             // 
+            // sQLRepositoryBindingSource
+            // 
+            this.sQLRepositoryBindingSource.DataSource = typeof(Tur_Retur_Kørselslog.Repos.SQLRepository);
+            // 
+            // Personale_Gridview
+            // 
+            this.Personale_Gridview.AutoGenerateColumns = false;
+            this.Personale_Gridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Personale_Gridview.DataSource = this.sQLRepositoryBindingSource;
+            this.Personale_Gridview.GridColor = System.Drawing.SystemColors.Control;
+            this.Personale_Gridview.Location = new System.Drawing.Point(0, 207);
+            this.Personale_Gridview.Name = "Personale_Gridview";
+            this.Personale_Gridview.Size = new System.Drawing.Size(373, 207);
+            this.Personale_Gridview.TabIndex = 0;
+            this.Personale_Gridview.Tag = "";
+            this.Personale_Gridview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Personale_Gridview_CellClick);
+            // 
             // KørselslogView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -727,7 +739,6 @@
             this.Name = "KørselslogView";
             this.Text = "Tur&Retur Kørselslog";
             this.Load += new System.EventHandler(this.KørselslogView_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.Personale_Gridview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Kørselslog_Gridview)).EndInit();
             this.Opret_Stamdata_Panel.ResumeLayout(false);
             this.Opret_Stamdata_Panel.PerformLayout();
@@ -744,14 +755,14 @@
             this.Hjælp_Kørselslog_Panel.PerformLayout();
             this.Hjælp_Personale_Panel.ResumeLayout(false);
             this.Hjælp_Personale_Panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sQLRepositoryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Personale_Gridview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView Personale_Gridview;
         private System.Windows.Forms.DataGridView Kørselslog_Gridview;
         private System.Windows.Forms.Panel Opret_Stamdata_Panel;
         private System.Windows.Forms.Panel Rediger_Stamdata_Panel;
@@ -809,6 +820,8 @@
         private System.Windows.Forms.Panel Hjælp_Panel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.RichTextBox Slet_Stamdata_Advarsel;
+        public System.Windows.Forms.BindingSource sQLRepositoryBindingSource;
+        private System.Windows.Forms.DataGridView Personale_Gridview;
     }
 }
 
